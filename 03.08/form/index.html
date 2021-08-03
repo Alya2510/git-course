@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css"/>
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_Kj4qJ9yZmcxhSTqSfjvPk');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_3arnwmz','template_abmic3t', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>   
+    <div class="wrapper">
+        <div class="container">
+            <div class="container-photo">
+
+            </div>
+            <div class="container-form">
+                <div class="container-form__inner">
+                    <form action="" id="contact-form">
+                        <input type="hidden" name="contact_number">
+                        <h1>Registration info</h1>
+                            <input type="text" name="from_name" id="" placeholder="Name">
+                            <div class="add-info">
+                                <input type="date" name="date" id="" placeholder="Birtday">
+                                <select name="gender" id="">
+                                    <option value="Gender">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>                    
+                            <select name="class" id="">
+                                <option value="Class">1</option>
+                                <option value="female">2</option>
+                            </select>
+                            <input type="text" name="reg_code" id="" placeholder="Registration Code">
+                            <input type="email" name="reply_to" id="" placeholder="Email:"> 
+                            <br>
+                            <input type="submit" value="Send" class="btn">                              
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
